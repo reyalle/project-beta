@@ -18,6 +18,7 @@ class Appointment(models.Model):
     reason = models.CharField(max_length=200)
     status = models.CharField(max_length=50)
     vin = models.CharField(max_length=17, unique=True)
+    sold = models.BooleanField(default=False)
     customer = models.CharField(max_length=50)
     technician = models.ForeignKey(
         Technician,

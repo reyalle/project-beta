@@ -75,3 +75,33 @@ def technician_detail(request, id):
                 {"message": "Technician could not be updated."},
                 status=404,
             )
+
+
+@require_http_methods(["GET", "POST"])
+def service_list(request):
+    if request.method == "GET":
+        appointments = Appointment.objects.all()
+        return JsonResponse(
+            {"appointments": appointments},
+            encoder=AppointmentEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+        try:
+            technician = Technician.objects.get(employee_id=content["technician"])
+            content["technician"] = technician
+        except Technician.DoesNotExist:
+            return JsonResponse(
+                {"message": "No Technician assigned to service appointment."},
+                status=400,
+            )
+        if AutomobileVO.objects.filter(vin=content["vin"]).exists():
+            content["sold"] = True
+        else:
+            content["sold"] = False
+        appointment = Appointment.objects.create(**content)
+        return JsonResponse(
+            appointment,
+            encoder=AppointmentEncoder,
+            safe=False,
+        )
