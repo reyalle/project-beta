@@ -9,19 +9,26 @@ import json
 @require_http_methods(["GET", "POST"])
 def sales_list(request):
     if request.method == "GET":
-        sale = Sale.objects.all()
+        sales = Sale.objects.all()
         return JsonResponse(
-            {"sale": sale},
+            {"sales": sales},
             encoder = SaleEncoder,
         )
     else:
         content = json.loads(request.body)
+        salesperson = Salesperson.objects.get(employee_id=content["salesperson"])
+        content["salesperson"] = salesperson
+        automobile = AutomobileVO.objects.get(vin=content["automobile"])
+        content["automobile"] = automobile
+        customer = Customer.objects.get(id=content["customer"])
+        content["customer"] = customer
         sale = Sale.objects.create(**content)
         return JsonResponse(
             sale,
             encoder=SaleEncoder,
             safe=False,
         )
+
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def sales_detail(request, id):
@@ -143,6 +150,7 @@ def customer_list(request):
         )
     else:
         content = json.loads(request.body)
+
         customer = Customer.objects.create(**content)
         return JsonResponse(
             customer,

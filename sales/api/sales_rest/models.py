@@ -28,6 +28,7 @@ class Customer(models.Model):
 
 class Sale(models.Model):
     price = models.IntegerField()
+
     automobile = models.ForeignKey(
         AutomobileVO,
         related_name="automobile",
@@ -35,7 +36,7 @@ class Sale(models.Model):
     )
     salesperson = models.ForeignKey(
         Salesperson,
-        related_name="sales_person",
+        related_name="salesperson",
         on_delete=models.CASCADE
     )
     customer = models.ForeignKey(
@@ -45,4 +46,4 @@ class Sale(models.Model):
     )
 
     def get_api_url(self):
-        return reverse("api_automobile", kwargs={"pk": self.id})
+        return reverse("sale_detail", kwargs={"pk": self.id})
