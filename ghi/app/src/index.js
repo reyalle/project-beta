@@ -25,3 +25,19 @@ async function loadSalesPeople() {
 }
 
 loadSalesPeople();
+
+async function loadCustomers() {
+  const response = await fetch ('http://localhost:8090/api/customers/');
+  if (response.ok) {
+    const data = await response.json();
+    root.render(
+      <React.StrictMode>
+        <App customer={data.customer} />
+      </React.StrictMode>
+    )
+  } else {
+    console.error(response)
+  }
+}
+
+loadCustomers();
