@@ -30,8 +30,6 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    "sales_rest.apps.SalesApiConfig",
-    "corsheaders",
     "inventory_rest.apps.InventoryRestConfig",
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +40,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,7 +59,6 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://localhost:8090",
 ]
 CORS_ALLOW_CREDENTIALS = True
 

@@ -10,7 +10,7 @@ root.render(
 );
 
 
-async function loadSalesPerson() {
+async function loadSalesPeople() {
   const response = await fetch('http://localhost:8090/api/salespeople/');
   if (response.ok) {
     const data = await response.json();
@@ -23,3 +23,5 @@ async function loadSalesPerson() {
     console.error(response)
   }
 }
+
+loadSalesPeople();
