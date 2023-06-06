@@ -14,7 +14,6 @@ class TechnicianEncoder(ModelEncoder):
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
-        "href",
         "id",
         "vin",
         "sold",
