@@ -54,7 +54,9 @@ def sale_detail(request, id):
                 safe=False,
             )
         except Sale.DoesNotExist:
-            return JsonResponse({"message": "Does not exist"})
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
     else:
         try:
             content = json.loads(request.body)
@@ -118,7 +120,9 @@ def sales_person(request, id):
                 safe=False,
             )
         except Salesperson.DoesNotExist:
-            return JsonResponse({"message": "Does not exist"})
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
     else:
         try:
             content = json.loads(request.body)
@@ -183,7 +187,9 @@ def customer_detail(request, id):
                 safe=False,
             )
         except Customer.DoesNotExist:
-            return JsonResponse({"Message": "Does not exist"})
+            response = JsonResponse({"Message": "Does not exist"})
+            response.status_code = 404
+            return response
     else:
         try:
             content = json.loads(request.body)

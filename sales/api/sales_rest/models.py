@@ -20,7 +20,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    phone_number = models.IntegerField()
+    phone_number = models.CharField(max_length=15)
 
     def get_api_url(self):
         return reverse("customer_detail", kwargs={"pk": self.id})
