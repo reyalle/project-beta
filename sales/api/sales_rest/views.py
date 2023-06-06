@@ -31,12 +31,12 @@ def sales_list(request):
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])
-def sales_detail(request, id):
+def sale_detail(request, id):
     if request.method == "GET":
         try:
-            Sale.objects.get(id=id)
+            sales = Sale.objects.get(id=id)
             return JsonResponse(
-                SaleEncoder,
+                sales,
                 encoder=SaleEncoder,
                 safe=False,
             )
@@ -51,7 +51,7 @@ def sales_detail(request, id):
             return JsonResponse(
                 sale,
                 encoder=SaleEncoder,
-                sale=False,
+                safe=False,
             )
         except Sale.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
@@ -95,10 +95,10 @@ def salespeople(request):
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])
-def salesperson_detail(request, id):
+def sales_person(request, id):
     if request.method == "GET":
         try:
-            salesperson = Salesperson.object.get(id=id)
+            salesperson = Salesperson.objects.get(id=id)
             return JsonResponse(
                 salesperson,
                 encoder=SalesPersonEncoder,
