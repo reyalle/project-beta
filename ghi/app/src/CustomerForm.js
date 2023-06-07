@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 
-function SalesPeopleForm() {
+function CustomerForm() {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
         const data = {};
         data.first_name = firstName;
         data.last_name = lastName;
-        data.employee_id = employeeId;
+        data.address = address;
+        data.phone_number = phoneNumber;
 
-        const salesPeopleUrl = 'http://localhost:8090/api/salespeople/';
+        const customerUrl = 'http://localhost:8090/api/customers/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -18,14 +19,15 @@ function SalesPeopleForm() {
             },
         };
 
-        const response = await fetch(salesPeopleUrl, fetchConfig);
+        const response = await fetch(customerUrl, fetchConfig);
         if (response.ok) {
-            const newSalesPerson = await response.json();
-            console.log(newSalesPerson);
+            const newCustomer = await response.json();
+            console.log(newCustomer);
 
             setFirstName('');
             setLastName('');
-            setEmployeeId('');
+            setAddress('');
+            setPhoneNumber('');
         }
     }
     const[firstName, setFirstName] = useState('');
@@ -40,17 +42,23 @@ function SalesPeopleForm() {
         setLastName(value);
     }
 
-    const[employeeId, setEmployeeId] = useState('');
-    const handleEmployeeIdChange = (event) => {
+    const[address, setAddress] = useState('');
+    const handleAddressChange = (event) => {
         const value = event.target.value;
-        setEmployeeId(value);
+        setAddress(value);
+    }
+
+    const[phoneNumber, setPhoneNumber] = useState('');
+    const handlePhoneNumberChange = (event) => {
+        const value = event.target.value;
+        setPhoneNumber(value);
     }
 
     return (
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                <h1>Add a Salesperson</h1>
+                <h1>Add a Customer</h1>
                 <form onSubmit={handleSubmit} id="create-location-form">
                     <div className="form-floating mb-3">
                     <input value={firstName} onChange={handleFirstNameChange} placeholder="First name" required type="text" name="first_name" id="first_name" className="form-control" />
@@ -61,8 +69,12 @@ function SalesPeopleForm() {
                     <label htmlFor="last_name">Last Name</label>
                     </div>
                     <div className="form-floating mb-3">
-                    <input value={employeeId} onChange={handleEmployeeIdChange} placeholder="Employee ID" required type="number" name="employee_id" id="employee_id" className="form-control" />
-                    <label htmlFor="employee_id">Employee ID</label>
+                    <input value={address} onChange={handleAddressChange} placeholder="address" required type="text" name="address" id="address" className="form-control" />
+                    <label htmlFor="employee_id">Address</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                    <input value={phoneNumber} onChange={handlePhoneNumberChange} placeholder="phone_number" required type="number" name="phone_number" id="phone_number" className="form-control" />
+                    <label htmlFor="phone_number">Phone Number</label>
                     </div>
                     <button className="btn btn-primary">Create</button>
                 </form>
@@ -72,4 +84,4 @@ function SalesPeopleForm() {
     );
 }
 
-export default SalesPeopleForm;
+export default CustomerForm;
