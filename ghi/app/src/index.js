@@ -73,3 +73,19 @@ async function loadManufacturers() {
 }
 
 loadManufacturers();
+
+async function loadTechnichians() {
+  const response = await fetch('http://localhose:8080/api/technicians');
+  if (response.ok) {
+    const data = await response.json();
+    root.render(
+      <React.StrictMode>
+        <App technichians = {data.technichians} />
+      </React.StrictMode>
+    )
+  } else {
+    console.error(response)
+  }
+}
+
+loadTechnichians();
