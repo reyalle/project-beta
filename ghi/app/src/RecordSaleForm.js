@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 
 function RecordSaleForm() {
 
-    const[vin, setVin] = useState('');
-    const handleVinChange = (event) => {
+    const[automobile, setAutomobile] = useState('');
+    const handleAutomobileChange = (event) => {
         const value = event.target.value;
-        setVin(value);
+        setAutomobile(value);
     }
 
     const[salesperson, setSalesPerson] = useState('');
@@ -14,7 +14,7 @@ function RecordSaleForm() {
         setSalesPerson(value);
     }
 
-    const[customers, setCustomer] = useState('');
+    const[customer, setCustomer] = useState('');
     const handleCustomerChange = (event) => {
         const value = event.target.value;
         setCustomer(value);
@@ -28,18 +28,19 @@ function RecordSaleForm() {
 
     const [autos, setAutos] = useState([]);
     const [salespeople, setSalesPeopleInfo] = useState([]);
-    const [customer, setCustomersInfo] = useState([]);
-    const [sold, setSold] = useState('')
+    const [customers, setCustomersInfo] = useState([]);
+    const [sold, setSold] = useState('');
+
     const handleSubmit = async (event) => {
         event.preventDefault()
 
         const data = {};
 
-        data.vin = vin;
+        data.automobile = automobile;
         data.salesperson = salesperson;
         data.customer = customer;
         data.price = price;
-        data.sold = sold;
+        // data.sold = sold;
 
         const salesUrl = 'http://localhost:8090/api/sales/';
         const fetchConfig = {
@@ -53,9 +54,8 @@ function RecordSaleForm() {
         const response = await fetch(salesUrl, fetchConfig);
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
 
-            setVin('');
+            setAutomobile('');
             setSalesPerson('');
             setCustomer('');
             setPrice('');
@@ -109,11 +109,11 @@ function RecordSaleForm() {
             <h1>Record a New Sale</h1>
             <form onSubmit={handleSubmit} id="record-sale-form">
                 <div className="mb-3">
-                    <select value={vin} onChange={handleVinChange} required name="vin" id="vin" className="form-select">
+                    <select value={automobile} onChange={handleAutomobileChange} required name="automobile" id="automobile" className="form-select">
                     <option value="">Choose an automobile VIN</option>
                     {autos.filter(auto => !auto.sold).map(auto => {
                         return (
-                            <option key={auto.id} value={auto.id}>
+                            <option key={auto.id} value={auto.vin}>
                                 {auto.vin}
                             </option>
                         )
@@ -133,12 +133,12 @@ function RecordSaleForm() {
                     </select>
                 </div>
                 <div className="mb-3">
-                    <select value={customers} onChange={handleCustomerChange} required name="customer" id="customer" className="form-select">
+                    <select value={customer} onChange={handleCustomerChange} required name="customer" id="customer" className="form-select">
                     <option value="">Choose a Customer ID</option>
-                    {customer.map(customers => {
+                    {customers.map(customer => {
                         return (
-                            <option key={customers.id} value={customers.id}>
-                                {customers.first_name} {customers.last_name}
+                            <option key={customer.id} value={customer.id}>
+                                {customer.first_name} {customer.last_name}
                             </option>
                         )
                     })}
