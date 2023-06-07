@@ -79,7 +79,7 @@ loadManufacturers();
 
 
 async function loadTechnicians() {
-  const response = await fetch('http://localhose:8080/api/technicians');
+  const response = await fetch('http://localhost:8080/api/technicians');
   if (response.ok) {
     const data = await response.json();
     root.render(
