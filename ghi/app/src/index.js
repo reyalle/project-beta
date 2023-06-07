@@ -64,7 +64,7 @@ async function loadManufacturers() {
     const data = await response.json();
     root.render(
       <React.StrictMode>
-        <App autos={data.autos} />
+        <App manufacturers={data.manufacturers} />
       </React.StrictMode>
     )
   } else {
@@ -72,4 +72,4 @@ async function loadManufacturers() {
   }
 }
 
-loadAutomobiles();
+loadManufacturers();
