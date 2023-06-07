@@ -5,12 +5,12 @@ import SalesPeopleList from './SalespeopleList.js';
 import SalesPeopleForm from './SalespeopleForm.js';
 import CustomerList from './CustomerList';
 import CustomerForm from './CustomerForm';
-
+import RecordSaleForm from './RecordSaleForm';
+import AutomobileList from './AutomobileList';
+import ManufacturerList from './ManufacturerList';
 
 function App(props) {
-  // if (props.salespeople === undefined) {
-  //   return null;
-  // }
+
   return (
     <BrowserRouter>
       <Nav />
@@ -25,6 +25,11 @@ function App(props) {
           <Route path="customers">
             <Route path="add" element={<CustomerForm />} />
           </Route>
+          <Route path="sales">
+            <Route path="add" element={<RecordSaleForm />} />
+          </Route>
+          {/* <Route path="automobiles" element={<AutomobileList autos={props.autos}/>} /> */}
+          <Route path="manufacturers" element={<ManufacturerList manufacturer={props.manufacturer}/>} />
         </Routes>
       </div>
     </BrowserRouter>

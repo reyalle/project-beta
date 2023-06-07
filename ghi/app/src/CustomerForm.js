@@ -1,6 +1,30 @@
 import React, {useState} from 'react';
 
 function CustomerForm() {
+    const[firstName, setFirstName] = useState('');
+    const handleFirstNameChange = (event) => {
+        const value = event.target.value;
+        setFirstName(value);
+    }
+
+    const[lastName, setLastName] = useState('');
+    const handleLastNameChange = (event) => {
+        const value = event.target.value;
+        setLastName(value);
+    }
+
+    const[address, setAddress] = useState('');
+    const handleAddressChange = (event) => {
+        const value = event.target.value;
+        setAddress(value);
+    }
+
+    const[phoneNumber, setPhoneNumber] = useState('');
+    const handlePhoneNumberChange = (event) => {
+        const value = event.target.value;
+        setPhoneNumber(value);
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -30,29 +54,7 @@ function CustomerForm() {
             setPhoneNumber('');
         }
     }
-    const[firstName, setFirstName] = useState('');
-    const handleFirstNameChange = (event) => {
-        const value = event.target.value;
-        setFirstName(value);
-    }
 
-    const[lastName, setLastName] = useState('');
-    const handleLastNameChange = (event) => {
-        const value = event.target.value;
-        setLastName(value);
-    }
-
-    const[address, setAddress] = useState('');
-    const handleAddressChange = (event) => {
-        const value = event.target.value;
-        setAddress(value);
-    }
-
-    const[phoneNumber, setPhoneNumber] = useState('');
-    const handlePhoneNumberChange = (event) => {
-        const value = event.target.value;
-        setPhoneNumber(value);
-    }
 
     return (
         <div className="row">

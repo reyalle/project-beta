@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import AutomobileVO, Salesperson, Customer, Sale
+from .models import AutomobileVO, Salesperson, Customers, Sale
 from .encoders import AutomobileVOEncoder, SalesPersonEncoder, CustomerEncoder, SaleEncoder
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
@@ -20,7 +20,7 @@ def sales_list(request):
         content["salesperson"] = salesperson
         automobile = AutomobileVO.objects.get(vin=content["automobile"])
         content["automobile"] = automobile
-        customer = Customer.objects.get(id=content["customer"])
+        customer = Customers.objects.get(id=content["customer"])
         content["customer"] = customer
         sale = Sale.objects.create(**content)
         return JsonResponse(
@@ -147,7 +147,7 @@ def sales_person(request, id):
 @require_http_methods(["GET", "POST"])
 def customer_list(request):
     if request.method == "GET":
-        customer = Customer.objects.all()
+        customer = Customers.objects.all()
         return JsonResponse(
             {"customer": customer},
             encoder=CustomerEncoder
@@ -155,7 +155,7 @@ def customer_list(request):
     else:
         content = json.loads(request.body)
 
-        customer = Customer.objects.create(**content)
+        customer = Customers.objects.create(**content)
         return JsonResponse(
             customer,
             encoder=CustomerEncoder,
@@ -167,33 +167,33 @@ def customer_list(request):
 def customer_detail(request, id):
     if request.method == "GET":
         try:
-            customer = Customer.objects.get(id=id)
+            customer = Customers.objects.get(id=id)
             return JsonResponse(
                 customer,
                 encoder =CustomerEncoder,
                 safe=False,
             )
-        except Customer.DoesNotExist:
+        except Customers.DoesNotExist:
             response = JsonResponse({"Message": "Does not exist"})
             response.status_code = 404
             return response
     elif request.method == "DELETE":
         try:
-            customer = Customer.objects.get(id=id)
+            customer = Customers.objects.get(id=id)
             customer.delete()
             return JsonResponse(
                 customer,
                 encoder=CustomerEncoder,
                 safe=False,
             )
-        except Customer.DoesNotExist:
+        except Customers.DoesNotExist:
             response = JsonResponse({"Message": "Does not exist"})
             response.status_code = 404
             return response
     else:
         try:
             content = json.loads(request.body)
-            customer = Customer.objects.get(id=id)
+            customer = Customers.objects.get(id=id)
 
             props = ["first_name", "last_name", "address", "phone_number"]
             for prop in props:
@@ -205,7 +205,7 @@ def customer_detail(request, id):
                 encoder=CustomerEncoder,
                 safe=False
             )
-        except Customer.DoesNotExist:
+        except Customers.DoesNotExist:
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response

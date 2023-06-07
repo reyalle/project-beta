@@ -10,13 +10,13 @@ class AutomobileVO(models.Model):
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    employee_id = models.PositiveSmallIntegerField()
+    employee_id = models.CharField(max_length=100)
 
     def get_api_url(self):
         return reverse("sales_person", kwargs={"pk": self.id})
 
 
-class Customer(models.Model):
+class Customers(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
@@ -40,7 +40,7 @@ class Sale(models.Model):
         on_delete=models.CASCADE
     )
     customer = models.ForeignKey(
-        Customer,
+        Customers,
         related_name="customer",
         on_delete=models.CASCADE
     )
