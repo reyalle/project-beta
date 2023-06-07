@@ -26,6 +26,7 @@ async function loadSalesPeople() {
 
 loadSalesPeople();
 
+
 async function loadCustomers() {
   const response = await fetch ('http://localhost:8090/api/customers/');
   if (response.ok) {
@@ -41,6 +42,7 @@ async function loadCustomers() {
 }
 
 loadCustomers();
+
 
 async function loadAutomobiles() {
   const response = await fetch ('http://localhost:8100/api/automobiles/');
@@ -58,6 +60,7 @@ async function loadAutomobiles() {
 
 loadAutomobiles();
 
+
 async function loadManufacturers() {
   const response = await fetch ('http://localhost:8100/api/manufacturers/');
   if (response.ok) {
@@ -74,7 +77,8 @@ async function loadManufacturers() {
 
 loadManufacturers();
 
-async function loadTechnichians() {
+
+async function loadTechnicians() {
   const response = await fetch('http://localhose:8080/api/technicians');
   if (response.ok) {
     const data = await response.json();
@@ -88,4 +92,4 @@ async function loadTechnichians() {
   }
 }
 
-loadTechnichians();
+loadTechnicians();
