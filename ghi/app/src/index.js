@@ -84,7 +84,7 @@ async function loadTechnicians() {
     const data = await response.json();
     root.render(
       <React.StrictMode>
-        <App technichians = {data.technichians} />
+        <App technicians = {data.technicians} />
       </React.StrictMode>
     )
   } else {
