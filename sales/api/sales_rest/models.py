@@ -16,7 +16,7 @@ class Salesperson(models.Model):
         return reverse("sales_person", kwargs={"pk": self.id})
 
 
-class Customers(models.Model):
+class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
@@ -40,7 +40,7 @@ class Sale(models.Model):
         on_delete=models.CASCADE
     )
     customer = models.ForeignKey(
-        Customers,
+        Customer,
         related_name="customer",
         on_delete=models.CASCADE
     )

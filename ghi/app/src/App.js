@@ -6,11 +6,12 @@ import SalesPeopleForm from './SalespeopleForm.js';
 import CustomerList from './CustomerList';
 import CustomerForm from './CustomerForm';
 import RecordSaleForm from './RecordSaleForm';
-import AutomobileList from './AutomobileList';
+// import AutomobileList from './AutomobileList';
 import ManufacturerList from './ManufacturerList';
 import TechnicianList from './TechnicianList';
 import TechnicianForm from './TechnicianForm';
 import AppointmentForm from './AppointmentForm';
+import SalesList from './SalesList';
 
 function App(props) {
 
@@ -31,7 +32,8 @@ function App(props) {
           <Route path="sales">
             <Route path="add" element={<RecordSaleForm />} />
           </Route>
-          <Route path="automobiles" element={<AutomobileList autos={props.autos}/>} />
+          <Route path="sales" element={<SalesList customer={props.sales}/>} />
+          {/* <Route path="automobiles" element={<AutomobileList autos={props.autos}/>} /> */}
           <Route path="manufacturers" element={<ManufacturerList manufacturer={props.manufacturer}/>} />
           <Route path="technicians" element={<TechnicianList technicians={props.technicians}/>} />
           <Route path="technicians">

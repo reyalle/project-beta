@@ -40,7 +40,7 @@ function RecordSaleForm() {
         data.salesperson = salesperson;
         data.customer = customer;
         data.price = price;
-        // data.sold = sold;
+        data.sold = sold;
 
         const salesUrl = 'http://localhost:8090/api/sales/';
         const fetchConfig = {
@@ -51,9 +51,8 @@ function RecordSaleForm() {
             },
         };
 
-        const response = await fetch(salesUrl, fetchConfig);
+        const response = await (salesUrl, fetchConfig);
         if (response.ok) {
-            const data = await response.json();
 
             setAutomobile('');
             setSalesPerson('');
@@ -70,7 +69,7 @@ function RecordSaleForm() {
 
         if (response.ok) {
         const data = await response.json();
-        setAutos(data.autos)
+        setAutos(data.autos);
         }
     }
 

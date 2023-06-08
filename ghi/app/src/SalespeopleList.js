@@ -1,4 +1,23 @@
+import React, {useState, useEffect} from 'react';
+
 function SalesPeopleList(props) {
+    const [salespeople, setSalesPeopleInfo] = useState([]);
+
+    const fetchSalesPeopleInfo = async () => {
+        const salespeopleUrl = 'http://localhost:8090/api/salespeople/';
+
+        const response = await fetch(salespeopleUrl);
+
+        if(response.ok) {
+            const data = await response.json();
+            setSalesPeopleInfo(data.salespeople)
+        }
+    }
+
+    useEffect(() => {
+        fetchSalesPeopleInfo();
+      }, []);
+
     return (
     <table className="table table-striped">
         <thead>
@@ -9,12 +28,12 @@ function SalesPeopleList(props) {
         </tr>
         </thead>
         <tbody>
-        {props.salespeople?.map(salespeople => {
+        {salespeople.map(salesperson => {
             return (
-            <tr key={salespeople.id}>
-                <td>{ salespeople.employee_id }</td>
-                <td>{ salespeople.first_name }</td>
-                <td>{ salespeople.last_name }</td>
+            <tr key={salesperson.id}>
+                <td>{ salesperson.employee_id }</td>
+                <td>{ salesperson.first_name }</td>
+                <td>{ salesperson.last_name }</td>
             </tr>
             );
         })}
