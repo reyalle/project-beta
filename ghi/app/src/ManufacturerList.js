@@ -1,4 +1,24 @@
+import React, {useState, useEffect} from 'react';
+
+
 function ManufacturerList(props) {
+    const [manufacturers, setManufacturerInfo] = useState([]);
+
+    const fetchManufacturerInfo = async () => {
+        const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
+
+        const response = await fetch(manufacturerUrl);
+
+        if(response.ok) {
+            const data = await response.json();
+            setManufacturerInfo(data.manufacturers)
+        }
+    }
+
+    useEffect(() => {
+        fetchManufacturerInfo();
+    }, []);
+
     return (
     <table className="table table-striped">
         <thead>
@@ -7,7 +27,7 @@ function ManufacturerList(props) {
         </tr>
         </thead>
         <tbody>
-        {props.manufacturers?.map(manufacturer => {
+        {manufacturers.map(manufacturer => {
             return (
             <tr key={manufacturer.id}>
                 <td>{ manufacturer.name }</td>
