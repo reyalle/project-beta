@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 function ModelsForm() {
 
-    const [models, setModels] = useState([]);
+    const [manufacturers, setManufacturers] = useState([])
 
     const[name, setName] = useState('');
     const handleNameChange = (event) => {
@@ -19,6 +19,7 @@ function ModelsForm() {
     const[manufacturerId, setManufacturerId] = useState('');
     const handleManufacturerIdChange = (event) => {
         const value = event.target.value;
+        setManufacturerId(value);
     }
 
     const handleSubmit = async (event) => {
@@ -27,9 +28,10 @@ function ModelsForm() {
         const data = {};
         data.name = name;
         data.picture_url = pictureUrl
-        data.manufacturer_id = manufacturerId
+        data.manufacturer_id = parseInt(manufacturerId)
 
-        const modelUrl = 'http://localhost:8100/api/models';
+        const modelUrl = 'http://localhost:8100/api/models/';
+
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -40,12 +42,27 @@ function ModelsForm() {
 
         const response = await fetch(modelUrl, fetchConfig);
         if (response.ok) {
-
             setName('');
             setPictureUrl('');
             setManufacturerId('');
         }
     }
+
+    const fetchManufacturerInfo = async () => {
+        const manufacturerUrl = 'http://localhost:8100/api/manufacturers';
+
+        const response = await fetch(manufacturerUrl)
+
+        if(response.ok){
+            const data = await response.json();
+            setManufacturers(data.manufacturers)
+        }
+    }
+
+    useEffect(() => {
+        fetchManufacturerInfo();
+    }, []);
+
     return (
         <div className="row">
             <div className="offset-3 col-6">
@@ -63,10 +80,10 @@ function ModelsForm() {
                     <div className="mb-3">
                         <select className="form-select" value={manufacturerId} onChange={handleManufacturerIdChange} >
                         <option value=''>Choose a Manufacturer</option>
-                        {models.map(model => {
+                        {manufacturers.map(manufacturer => {
                             return (
-                                <option key={model.id} value={model.manufacturer.id}>
-                                    { model.id } { model.name }
+                                <option key={manufacturer.id} value={manufacturer.id}>
+                                    { manufacturer.id } { manufacturer.name }
                                 </option>
                             )
                         })}
