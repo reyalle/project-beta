@@ -1,4 +1,24 @@
+import React, {useState, useEffect} from 'react';
+
 function CustomerList(props) {
+
+    const [customers, setCustomersInfo] = useState([]);
+
+    const fetchCustomersInfo = async () => {
+        const customersUrl = 'http://localhost:8090/api/customers/';
+
+        const response = await fetch(customersUrl);
+
+        if(response.ok) {
+            const data = await response.json();
+            setCustomersInfo(data.customer)
+        }
+    }
+
+    useEffect(() => {
+        fetchCustomersInfo();
+      }, []);
+
     return (
     <table className="table table-striped">
         <thead>
@@ -10,7 +30,7 @@ function CustomerList(props) {
         </tr>
         </thead>
         <tbody>
-        {props.customer?.map(customer => {
+        {customers.map(customer => {
             return (
             <tr key={customer.id}>
                 <td>{ customer.first_name }</td>

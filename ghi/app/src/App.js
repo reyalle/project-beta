@@ -32,7 +32,7 @@ function App(props) {
           <Route path="sales">
             <Route path="add" element={<RecordSaleForm />} />
           </Route>
-          <Route path="sales" element={<SalesList customer={props.sales}/>} />
+          <Route path="sales" element={<SalesList sales={props.sales}/>} />
           {/* <Route path="automobiles" element={<AutomobileList autos={props.autos}/>} /> */}
           <Route path="manufacturers" element={<ManufacturerList manufacturer={props.manufacturer}/>} />
           <Route path="technicians" element={<TechnicianList technicians={props.technicians}/>} />
