@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 
-
 function SalesList(props) {
     const [sales, setSalesInfo] = useState([]);
 
@@ -35,10 +34,10 @@ function SalesList(props) {
         {sales.map(sale => {
             return (
             <tr key={sale.id}>
-                {/* <td>{ sale.employee_id }</td>
-                <td>{ sale.salesperson.first_name }</td>
-                <td>{ sale.customer }</td>
-                <td>{ sale.automobile.vin }</td> */}
+                <td>{ sale.salesperson.employee_id }</td>
+                <td>{ sale.salesperson.first_name } {sale.salesperson.last_name}</td>
+                <td>{ sale.customer.first_name } { sale.customer.last_name}</td>
+                <td>{ sale.automobile.vin }</td>
                 <td>{ sale.price }</td>
             </tr>
             );
