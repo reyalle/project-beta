@@ -10,14 +10,14 @@ class Technician(models.Model):
         return self.last_name
 
 class AutomobileVO(models.Model):
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(max_length=17)
     sold = models.BooleanField(default=False)
 
 class Appointment(models.Model):
     date_time = models.DateTimeField()
     reason = models.CharField(max_length=200)
     status = models.CharField(max_length=50)
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(max_length=17, unique=False)
     sold = models.BooleanField(default=False)
     customer = models.CharField(max_length=50)
     technician = models.ForeignKey(

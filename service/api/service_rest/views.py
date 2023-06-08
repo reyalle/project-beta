@@ -96,7 +96,7 @@ def service_list(request):
                 {"message": "No Technician assigned to service appointment."},
                 status=404,
             )
-        if AutomobileVO.objects.filter(vin=content["vin"]).exists():
+        if AutomobileVO.objects.filter(vin=content["vin"]):
             content["sold"] = True
         else:
             content["sold"] = False
