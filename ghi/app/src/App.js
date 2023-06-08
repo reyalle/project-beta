@@ -13,8 +13,9 @@ import TechnicianForm from './TechnicianForm';
 import AppointmentForm from './AppointmentForm';
 import SalesList from './SalesList';
 import SalespersonHistory from './SalespersonHistory';
-import CreateManufacturerForm from './CreateManufacturer';
+import ManufacturerForm from './ManufacturerForm';
 import ModelList from './VehicleList';
+import ModelsForm from './VehicleForm';
 
 function App(props) {
 
@@ -41,9 +42,12 @@ function App(props) {
           </Route>
           <Route path="manufacturers" element={<ManufacturerList manufacturer={props.manufacturer}/>} />
           <Route path="manufacturers">
-            <Route path="add" element={<CreateManufacturerForm />} />
+            <Route path="add" element={<ManufacturerForm />} />
           </Route>
           <Route path="models" element={<ModelList models={props.models}/>} />
+          <Route path="models">
+            <Route path="add" element={<ModelsForm />} />
+          </Route>
           <Route path="technicians" element={<TechnicianList technicians={props.technicians}/>} />
           <Route path="technicians">
             <Route path="add" element={<TechnicianForm />} />

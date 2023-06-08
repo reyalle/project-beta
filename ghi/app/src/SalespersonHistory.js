@@ -4,7 +4,6 @@ function SalespersonHistory(props) {
     const [sales, setSalesInfo] = useState([]);
     const [salespeople, setSalesPeopleInfo] = useState([]);
     const [selectedSalesperson, setSelectedSalesperson] = useState('');
-    console.log(selectedSalesperson)
 
     const onChange = (event) => {
         const value = event.target.value;
@@ -43,8 +42,8 @@ function SalespersonHistory(props) {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                <h1>Salesperson History</h1>
-                <div className="mb-3">
+                    <h1>Salesperson History</h1>
+                    <div className="mb-3">
                         <select className="form-select" value={selectedSalesperson} onChange={onChange}>
                         <option value=''>Choose a Salesperson</option>
                         {salespeople.map(salesperson => {
