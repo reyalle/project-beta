@@ -83,7 +83,7 @@ function ModelsForm() {
                         {manufacturers.map(manufacturer => {
                             return (
                                 <option key={manufacturer.id} value={manufacturer.id}>
-                                    { manufacturer.id } { manufacturer.name }
+                                    { manufacturer.name }
                                 </option>
                             )
                         })}
