@@ -38,11 +38,7 @@ function ModelList() {
                             <tr key={model.id}>
                                 <td>{ model.name }</td>
                                 <td>{ model.manufacturer.name }</td>
-<<<<<<< HEAD
-                                <img src={model.picture_url} width="250" height="200" alt="vehicle pic"/>
-=======
-                                <td><img src={model.picture_url} width="50%" height="50%"/></td>
->>>>>>> ced00abba3944124c49cfab321e50da018b724a2
+                                <img src={model.picture_url} width="50%" height="50%" alt="vehicle pic"/>
                             </tr>
                             );
                         })}
