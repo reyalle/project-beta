@@ -88,6 +88,7 @@ def service_list(request):
         )
     else:
         content = json.loads(request.body)
+        content["status"] = "Scheduled"
         try:
             technician = Technician.objects.get(employee_id=content["technician"])
             content["technician"] = technician
