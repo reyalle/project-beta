@@ -44,7 +44,7 @@ function AppointmentForm() {
     const appointmentUrl = 'http://localhost:8080/api/appointments/'
 
     const fetchConfig = {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'applications/json'
@@ -75,13 +75,13 @@ function AppointmentForm() {
 
   useEffect(() => {
     fetchTechnicianInfo();
-  }, []);
+  }, [])
 
   return(
     <div className="row">
       <div className="offset-3 col-6">
         <div className='shadow p-4 mt-4'>
-          <h1>Add Appointment</h1>
+          <h2>Add Appointment</h2>
           <form onSubmit={handleSubmit} id="add-appointment-form">
             <div className='form-floating mb-3'>
               <input onChange={handleVinChange} value={vin} placeholder='vin' required type='text' name='vin' className='form-control' />

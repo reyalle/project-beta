@@ -6,7 +6,6 @@ function AppointmentsList() {
 
   const fetchAppointmentsInfo = async () => {
       const appointmentsUrl = 'http://localhost:8080/api/appointments/';
-
       const response = await fetch(appointmentsUrl)
 
       if(response.ok) {
@@ -69,6 +68,7 @@ function AppointmentsList() {
 
   return(
     <div className='container-fluid'>
+      <h2>Service Appointments</h2>
       <table className="table table-striped">
         <thead>
         <tr>
