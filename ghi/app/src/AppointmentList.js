@@ -3,17 +3,21 @@ import {React, useState, useEffect} from 'react'
 
 function AppointmentsList() {
   const [appointments, setAppointmentsInfo] = useState([])
-
-  const fetchAppointmentsInfo = async () => {
-      const appointmentsUrl = 'http://localhost:8080/api/appointments/';
-      const response = await fetch(appointmentsUrl)
-
-      if(response.ok) {
-          const data = await response.json();
-          const scheduledAppointments = data.appointments.filter(appointment => appointment.status === 'Scheduled');
-          setAppointmentsInfo(scheduledAppointments)
-      }
+  const formatDateTime = (date_time) => {
+    const options = {
+      month: 'numeric',
+      day: 'numeric',
+      year: '2-digit',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+      timeZone: 'UTC',
+    };
+    return new Date(date_time).toLocaleString("en-US", options);
   }
+  const sortAppointments = appointments.sort((a, b) => {
+    return new Date(a.date_time) - new Date(b.date_time)
+  })
 
   const handleServiceCancel = async (id) => {
     const updateDataCancel = {
@@ -49,22 +53,20 @@ function AppointmentsList() {
     }
   }
 
+  const fetchAppointmentsInfo = async () => {
+      const appointmentsUrl = 'http://localhost:8080/api/appointments/';
+      const response = await fetch(appointmentsUrl)
+
+      if(response.ok) {
+          const data = await response.json();
+          const scheduledAppointments = data.appointments.filter(appointment => appointment.status === 'Scheduled');
+          setAppointmentsInfo(scheduledAppointments)
+      }
+  }
+
   useEffect(() => {
       fetchAppointmentsInfo();
   }, [])
-
-  const formatDateTime = (date_time) => {
-    const options = {
-      month: 'numeric',
-      day: 'numeric',
-      year: '2-digit',
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true,
-      timeZone: 'UTC',
-    };
-    return new Date(date_time).toLocaleString("en-US", options);
-  }
 
   return(
     <div className='container-fluid'>
@@ -81,7 +83,7 @@ function AppointmentsList() {
         </tr>
         </thead>
         <tbody>
-        {appointments.map(appointment => {
+        {sortAppointments.map(appointment => {
             return (
             <tr key={appointment.id}>
                 <td>{ appointment.vin }</td>
