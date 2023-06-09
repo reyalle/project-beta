@@ -9,8 +9,9 @@ Team:
 
 ## Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+I set up the poller for the inventory API to pull all necessary data and set it to an AutomobileVO model to be accessed by my microservice views. After that it was a matter of setting up the service API's for Technicians and Service which would create all the necessary database entries for my React forms. In order to develop the VIP service feature
+
+I coded a conditional statemment in my service view that would check to see if the VIN of a vehicle entered on the service form is present inside of the Inventory database and if true, to set the sold status of the vehicle revceiveing the service appointment to true. My Service List page would then display to the user the VIP status of each vehicle based on the wether the sold variable was true or false.
 
 ## Sales microservice
 
