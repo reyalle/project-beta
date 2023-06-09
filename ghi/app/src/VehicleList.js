@@ -21,8 +21,8 @@ function ModelList() {
 
     return (
         <div className="container-fluid">
-            {/* <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4"> */}
+            <div className="offset-3 col-6">
+                <div className="shadow p-4 mt-4">
                     <h1>Models</h1>
                     <table className="table table-striped">
                         <thead>
@@ -38,19 +38,15 @@ function ModelList() {
                             <tr key={model.id}>
                                 <td>{ model.name }</td>
                                 <td>{ model.manufacturer.name }</td>
-<<<<<<< HEAD
-                                <img src={model.picture_url} width="250" height="200" alt="vehicle pic"/>
-=======
                                 <td><img src={model.picture_url} width="50%" height="50%"/></td>
->>>>>>> ced00abba3944124c49cfab321e50da018b724a2
                             </tr>
                             );
                         })}
                         </tbody>
                     </table>
                 </div>
-        //     </div>
-        // </div>
+            </div>
+        </div>
     );
 }
 
