@@ -6,8 +6,8 @@ function AutomobileForm() {
   const [color, setColor] = useState('')
   const [year, setYear] = useState('')
   const [vin, setVin] = useState('')
-  const [autos, setAutosInfo] = useState([])
-  const [model, setModel] = useState('')
+  const [models, setModelsInfo] = useState([])
+  const [model_id, setModel] = useState('')
   const navigate = useNavigate()
 
   const handleColorChange = (event) => {
@@ -35,7 +35,7 @@ function AutomobileForm() {
     data.color = color
     data.year = year
     data.vin = vin
-    data.model_id = model
+    data.model_id = model_id
 
     const autosUrl = 'http://localhost:8100/api/automobiles/'
 
@@ -58,18 +58,18 @@ function AutomobileForm() {
     }
   }
 
-  const fetchAutosInfo = async () => {
-    const autosUrl = 'http://localhost:8100/api/automobiles';
+  const fetchModelsInfo = async () => {
+    const autosUrl = 'http://localhost:8100/api/models';
     const response = await fetch(autosUrl)
 
     if(response.ok){
         const data = await response.json();
-        setAutosInfo(data.autos)
+        setModelsInfo(data.models)
     }
   }
 
   useEffect(() => {
-    fetchAutosInfo();
+    fetchModelsInfo();
   }, [])
 
   return(
@@ -91,12 +91,12 @@ function AutomobileForm() {
               <label htmlFor="vin">Vin</label>
             </div>
             <div className="mb-3">
-              <select className="form-select" value={model} onChange={handleModelChange} >
+              <select className="form-select" value={model_id} onChange={handleModelChange} >
               <option>Choose a Model</option>
-                {autos.map(auto => {
+                {models.map(model => {
                   return (
-                    <option key={auto.id} value={auto.model.id}>
-                      {auto.model.id} { auto.model.name }
+                    <option key={model.id} value={model.id}>
+                      { model.name }
                       </option>
                   )
                 })}
