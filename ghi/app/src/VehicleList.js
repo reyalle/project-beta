@@ -20,9 +20,9 @@ function ModelList(props) {
     }, []);
 
     return (
-        <div className="row">
-            <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
+        <div className="container-fluid">
+            {/* <div className="offset-3 col-6">
+                <div className="shadow p-4 mt-4"> */}
                     <h1>Models</h1>
                     <table className="table table-striped">
                         <thead>
@@ -38,15 +38,15 @@ function ModelList(props) {
                             <tr key={model.id}>
                                 <td>{ model.name }</td>
                                 <td>{ model.manufacturer.name }</td>
-                                <img src={model.picture_url} width="250" height="200"/>
+                                <td><img src={model.picture_url} width="50%" height="50%"/></td>
                             </tr>
                             );
                         })}
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+        //     </div>
+        // </div>
     );
 }
 
