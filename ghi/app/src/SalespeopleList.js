@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function SalesPeopleList(props) {
+function SalesPeopleList() {
     const [salespeople, setSalesPeopleInfo] = useState([]);
 
     const fetchSalesPeopleInfo = async () => {
@@ -16,7 +16,7 @@ function SalesPeopleList(props) {
 
     useEffect(() => {
         fetchSalesPeopleInfo();
-      }, []);
+    }, []);
 
     return (
     <table className="table table-striped">

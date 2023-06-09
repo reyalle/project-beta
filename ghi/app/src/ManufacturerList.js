@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 
-function ManufacturerList(props) {
+function ManufacturerList() {
     const [manufacturers, setManufacturerInfo] = useState([]);
 
     const fetchManufacturerInfo = async () => {

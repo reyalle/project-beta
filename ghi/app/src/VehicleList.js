@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 
-function ModelList(props) {
+function ModelList() {
     const [models, setModelsInfo] = useState([]);
 
     const fetchModelsInfo = async () => {
@@ -38,7 +38,7 @@ function ModelList(props) {
                             <tr key={model.id}>
                                 <td>{ model.name }</td>
                                 <td>{ model.manufacturer.name }</td>
-                                <img src={model.picture_url} width="250" height="200"/>
+                                <img src={model.picture_url} width="250" height="200" alt="vehicle pic"/>
                             </tr>
                             );
                         })}

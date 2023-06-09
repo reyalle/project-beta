@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function CustomerList(props) {
+function CustomerList() {
 
     const [customers, setCustomersInfo] = useState([]);
 

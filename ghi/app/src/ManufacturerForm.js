@@ -35,7 +35,7 @@ function ManufacturerForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                 <h1>Create a manufacturer</h1>
-                <form onSubmit={handleSubmit} id="create-location-form">
+                <form onSubmit={handleSubmit} id="create-manufacturer-form">
                     <div className="form-floating mb-3">
                     <input value={name} onChange={handleNameChange} placeholder="manufacturer" required type="text" name="manufacturer" id="manufacturer" className="form-control" />
                     <label htmlFor="manufacturer">Manufacturer</label>

@@ -39,8 +39,6 @@ function SalesPeopleForm() {
 
         const response = await fetch(salesPeopleUrl, fetchConfig);
         if (response.ok) {
-            const newSalesPerson = await response.json();
-            console.log(newSalesPerson);
 
             setFirstName('');
             setLastName('');
@@ -53,7 +51,7 @@ function SalesPeopleForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                 <h1>Add a Salesperson</h1>
-                <form onSubmit={handleSubmit} id="create-location-form">
+                <form onSubmit={handleSubmit} id="create-salespeople-form">
                     <div className="form-floating mb-3">
                     <input value={firstName} onChange={handleFirstNameChange} placeholder="First name" required type="text" name="first_name" id="first_name" className="form-control" />
                     <label htmlFor="first_name">First Name</label>

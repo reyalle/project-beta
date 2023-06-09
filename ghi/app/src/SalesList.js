@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function SalesList(props) {
+function SalesList() {
     const [sales, setSalesInfo] = useState([]);
 
     const fetchSalesInfo = async () => {

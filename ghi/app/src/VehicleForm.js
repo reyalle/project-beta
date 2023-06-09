@@ -68,7 +68,7 @@ function ModelsForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                 <h1>Create a Vehicle Model</h1>
-                <form onSubmit={handleSubmit} id="create-location-form">
+                <form onSubmit={handleSubmit} id="create-vehicle-form">
                     <div className="form-floating mb-3">
                     <input value={name} onChange={handleNameChange} placeholder="name" required type="text" name="name" id="name" className="form-control" />
                     <label htmlFor="manufacturer">Model Name</label>

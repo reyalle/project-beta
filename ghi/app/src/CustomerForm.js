@@ -45,8 +45,6 @@ function CustomerForm() {
 
         const response = await fetch(customerUrl, fetchConfig);
         if (response.ok) {
-            const newCustomer = await response.json();
-            console.log(newCustomer);
 
             setFirstName('');
             setLastName('');
@@ -61,13 +59,13 @@ function CustomerForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                 <h1>Add a Customer</h1>
-                <form onSubmit={handleSubmit} id="create-location-form">
+                <form onSubmit={handleSubmit} id="create-customer-form">
                     <div className="form-floating mb-3">
-                    <input value={firstName} onChange={handleFirstNameChange} placeholder="First name" required type="text" name="first_name" id="first_name" className="form-control" />
+                    <input value={firstName} onChange={handleFirstNameChange} placeholder="first name" required type="text" name="first_name" id="first_name" className="form-control" />
                     <label htmlFor="first_name">First Name</label>
                     </div>
                     <div className="form-floating mb-3">
-                    <input value={lastName} onChange={handleLastNameChange} placeholder="Last name" required type="text" name="last_name" id="last_name" className="form-control" />
+                    <input value={lastName} onChange={handleLastNameChange} placeholder="last name" required type="text" name="last_name" id="last_name" className="form-control" />
                     <label htmlFor="last_name">Last Name</label>
                     </div>
                     <div className="form-floating mb-3">
