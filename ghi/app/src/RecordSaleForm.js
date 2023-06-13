@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+
+
 function RecordSaleForm() {
     const[automobile, setAutomobile] = useState('');
     const handleAutomobileChange = (event) => {
