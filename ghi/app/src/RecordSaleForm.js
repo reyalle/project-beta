@@ -1,47 +1,35 @@
 import React, {useState, useEffect} from 'react';
-
 function RecordSaleForm() {
-
     const[automobile, setAutomobile] = useState('');
     const handleAutomobileChange = (event) => {
         const value = event.target.value;
         setAutomobile(value);
     }
-
     const[salesperson, setSalesPerson] = useState('');
     const handleSalesPersonChange = (event) => {
         const value = event.target.value;
         setSalesPerson(value);
     }
-
     const[customer, setCustomer] = useState('');
     const handleCustomerChange = (event) => {
         const value = event.target.value;
         setCustomer(value);
     }
-
     const[price, setPrice] = useState('');
     const handlePriceChange = (event) => {
         const value = event.target.value;
         setPrice(value);
     }
-
     const [autos, setAutos] = useState([]);
     const [salespeople, setSalesPeopleInfo] = useState([]);
     const [customers, setCustomersInfo] = useState([]);
-    const [sold, setSold] = useState('');
-
     const handleSubmit = async (event) => {
         event.preventDefault()
-
         const data = {};
-
         data.automobile = automobile;
         data.salesperson = salesperson;
         data.customer = customer;
         data.price = price;
-        data.sold = sold;
-
         const salesUrl = 'http://localhost:8090/api/sales/';
         const fetchConfig = {
             method: "post",
@@ -50,57 +38,43 @@ function RecordSaleForm() {
                 'Content-Type': 'application/json',
             },
         };
-
-        const response = await (salesUrl, fetchConfig);
+        const response = await fetch(salesUrl, fetchConfig);
         if (response.ok) {
-
             setAutomobile('');
             setSalesPerson('');
             setCustomer('');
             setPrice('');
-            setSold('true');
         }
     }
-
     const fetchAutoData = async () => {
         const autoUrl = 'http://localhost:8100/api/automobiles/';
-
         const response = await fetch(autoUrl);
-
         if (response.ok) {
         const data = await response.json();
         setAutos(data.autos);
         }
     }
-
     const fetchSalesPeopleInfo = async () => {
         const salespeopleUrl = 'http://localhost:8090/api/salespeople/';
-
         const response = await fetch(salespeopleUrl);
-
         if(response.ok) {
             const data = await response.json();
             setSalesPeopleInfo(data.salespeople)
         }
     }
-
     const fetchCustomersInfo = async () => {
         const customersUrl = 'http://localhost:8090/api/customers/';
-
         const response = await fetch(customersUrl)
-
         if(response.ok) {
             const data = await response.json();
             setCustomersInfo(data.customer)
         }
     }
-
     useEffect(() => {
       fetchAutoData();
       fetchSalesPeopleInfo();
       fetchCustomersInfo();
     }, []);
-
     return (
         <div className="row">
         <div className="offset-3 col-6">
@@ -154,5 +128,4 @@ function RecordSaleForm() {
     </div>
     );
 }
-
 export default RecordSaleForm;

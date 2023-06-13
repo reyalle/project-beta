@@ -94,7 +94,7 @@ function AppointmentsList() {
                 <td>{ appointment.reason }</td>
                 <td>
                 <button onClick={() => handleServiceCancel(appointment.id)} type="button" className="btn btn-outline-danger">Cancel</button>
-                <button onClick={() => handleServiceComplete(appointment.id)} type="button" class="btn btn-outline-success">Complete</button>
+                <button onClick={() => handleServiceComplete(appointment.id)} type="button" className="btn btn-outline-success">Complete</button>
 
                 </td>
             </tr>
