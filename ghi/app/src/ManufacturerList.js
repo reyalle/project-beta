@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { NavLink } from 'react-router-dom';
 
 
 function ManufacturerList() {
@@ -20,22 +21,28 @@ function ManufacturerList() {
     }, []);
 
     return (
-    <table className="table table-striped">
-        <thead>
-        <tr>
-            <th>Manufacturer</th>
-        </tr>
-        </thead>
-        <tbody>
-        {manufacturers.map(manufacturer => {
-            return (
-            <tr key={manufacturer.id}>
-                <td>{ manufacturer.name }</td>
-            </tr>
-            );
-        })}
-        </tbody>
-    </table>
+      <div className="container mt-4">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+          <h1>Inventory</h1>
+          <NavLink to="/manufacturers/add" className="btn btn-success">
+              Add Make
+          </NavLink>
+      </div>
+      <table className="table table-striped">
+          <thead>
+              <tr>
+                  <th>Makes</th>
+              </tr>
+          </thead>
+          <tbody>
+              {manufacturers.map(manufacturer => (
+                  <tr key={manufacturer.id}>
+                      <td>{manufacturer.name}</td>
+                  </tr>
+              ))}
+          </tbody>
+      </table>
+  </div>
     );
 }
 
